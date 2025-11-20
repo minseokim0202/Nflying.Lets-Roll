@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>렛츠-롤!</title>
+    <link rel="stylesheet" href="style_1_runlikethis.css"> 
+
+    <link rel="icon" type="image/png" href="favicon.png"> 
+    
+</head>
+<body>
+
+    <div id="tv-frame">
+        
+        <div id="frame-overlay"></div> 
+
+        <button 
+            id="new-top-left-btn" 
+            onclick="window.location.href = 'web_Nflying.html';" 
+            aria-label="시작 페이지로 이동"
+        ></button> 
+
+        <div id="button-overlay">
+            <div class="playback-controls">
+                <button id="pause-btn" onclick="pauseMusic()" aria-label="음악 멈춤"></button> 
+                <button id="play-btn" onclick="playMusic()" aria-label="음악 재생"></button> 
+            </div>
+           <div class="channel-controls">
+                <button class="channel-btn" onclick="changeSong(1)" aria-label="1번 곡 이동">CH 1</button>
+                 <button class="channel-btn" onclick="changeSong(2)" aria-label="2번 곡 이동">CH 2</button>
+                <button class="channel-btn" onclick="changeSong(3)" aria-label="3번 곡 이동">CH 3</button>
+                <button class="channel-btn" onclick="changeSong(4)" aria-label="4번 곡 이동">CH 4</button>
+            </div>
+        </div>
+        
+        <div id="screen-viewport">
+            <img id="lyric-image" src="web_lyrics_runlikethis.png" alt="스크롤되는 가사 페이지" loading="lazy">
+        </div>
+
+    </div>
+
+    <audio id="music-player" src="audio/runlikethis.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+    
+ </body>
+</html>

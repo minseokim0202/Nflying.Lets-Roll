@@ -1,0 +1,159 @@
+/* 기본 설정 */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden; 
+}
+
+/* 📺 TV 프레임 컨테이너 */
+#tv-frame {
+    width: 100vw; 
+    height: 100vh; 
+    position: fixed;
+    top: 0; 
+    left: 0;
+    background-color: black; /* TV 테두리 밖의 여백을 검은색으로 채움 */
+    position: relative; 
+}
+
+/* 🖼️ 2. 구멍 뚫린 TV 프레임 오버레이 (가장 높은 층) */
+#frame-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    
+    /* 🖼️ 파일명 수정: 구멍 뚫린 TV 프레임 이미지 파일명을 실제 파일로 변경하세요 */
+    background-image: url('web_tv_runlikethis.png'); 
+    background-size: contain; 
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    z-index: 30; /* 가장 높은 층 */
+    pointer-events: none; /* 마우스 클릭이 아래 층으로 통과되게 설정 */
+}
+
+/* 🖼️ TV 화면 뷰포트 (스크롤 영역) */
+#screen-viewport {
+    /* 📐 3. 필수 조정: TV 프레임 이미지에 맞춰 이 4가지 값을 정확히 조정해야 합니다! */
+    position: absolute; 
+    width: 47.4vw;   /* TV 화면 너비 비율 (예시 값) */
+    top: 18.5vh;       /* TV 화면 시작점 (상단 비율) */
+    left: 26.5vw;      /* TV 화면 시작점 (왼쪽 비율) */
+    height: 58vh;    /* TV 화면 높이 비율 */
+    
+    background-color: white; /* 가사 이미지 뒤에 깔릴 화면 색상 */
+    overflow-y: scroll; 
+    z-index: 15; /* 중간 층 */
+    
+    /* 스크롤바 숨기기 */
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
+}
+#screen-viewport::-webkit-scrollbar {
+    display: none;
+}
+
+/* 🏞️ 가사 이미지 스타일 */
+#lyric-image {
+    width: 100%; 
+    height: auto; 
+    display: block;
+}
+
+/* 💡 버튼 오버레이 (Z-index: 20) */
+#button-overlay {
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    z-index: 20; /* 💥 20->임시 변경: 프레임(30)보다 높게 설정 */
+
+    /* 💥💥💥 이 코드를 추가하여 클릭 이벤트를 아래로 통과시킵니다. 💥💥💥 */
+    pointer-events: none;
+}
+
+/* 💡 버튼 공통 스타일 (투명하게 설정) */
+button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    position: relative; /* 새로운 버튼 외의 모든 버튼은 flex나 relative로 정렬됨 */
+    
+    z-index: 45; /* 💥 임시 변경: 버튼 컨테이너보다 더 높게 설정 */ 
+
+    /* 💥💥💥 개별 버튼에는 다시 클릭이 가능하도록 복구합니다. 💥💥💥 */
+    pointer-events: auto;
+    
+    /* 👇👇👇 디버깅을 위한 임시 스타일 👇👇👇 */
+    /*background-color: rgba(255, 0, 0, 0.4); 투명한 빨간색 배경 */
+    /*border: 1px solid yellow;  노란색 테두리 */
+    /* 👆👆👆 위치 조정 후 반드시 제거/주석 처리하세요 👆👆👆 */
+}
+
+/* 🌟🌟🌟 왼쪽 위 새 버튼 스타일 🌟🌟🌟 */
+#new-top-left-btn {
+    /* 📐 위치 조정 필수! TV 프레임의 왼쪽 상단 컨트롤 위치에 맞추세요. */
+    position: absolute;
+    top: 15.2vh;   /* 상단에서부터의 거리 */
+    left: 11.2vw; /* 왼쪽에서부터의 거리 */
+    width: 7.6vw; 
+    height: 5vw;
+    
+    /* 이 버튼은 button-overlay 밖에 있으므로, z-index를 더 높게 설정해야 합니다. */
+    z-index: 46; 
+    
+    /* 💡 임시 스타일 구분 */
+    /*background-color: rgba(0, 0, 255, 0.4);  파란색 배경 */
+   /*border: 1px solid cyan;*/
+}
+
+
+/* ⬇️ 버튼 위치 및 크기 조정 (TV 프레임 이미지의 버튼 위치에 맞춰 조정 필수!) */
+
+/* 왼쪽 재생/멈춤 버튼 위치 조정 */
+.playback-controls 
+{
+    position: absolute; 
+    left: 10.4vw; 
+    bottom: 27.5vh; 
+
+    /* 💥 버튼들이 가로로 나란히 배치되도록 설정 */
+    display: flex;
+    /*gap: 0.5vw;  버튼 사이에 약간의 간격 추가 */
+}
+
+#pause-btn, #play-btn 
+{
+    width: 3.9vw; 
+    height: 1.75vw;
+   
+}
+
+
+/* 오른쪽 곡 이동 버튼 위치 조정 */
+.channel-controls 
+{
+    position: absolute;
+    right: 11.75vw; 
+    top: 13.8vh; 
+    
+    display: flex;
+    flex-direction: column;
+    gap: 3.5vw; /* 버튼 사이에 약간의 간격 추가 */
+}
+
+.channel-btn 
+{
+    width: 4vw; 
+    height: 4vw;
+    border-radius: 50%; /* 완전한 원형 */
+    margin: 0; /* flex 사용 시 margin은 gap으로 대체 가능 */ 
+}

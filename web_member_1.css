@@ -1,0 +1,59 @@
+/* web_member_1.css (TV 프레임, 컨테이너, 텍스트 스타일 모두 제거) */
+
+/* 기본 설정: 뷰포트 전체 높이 사용 및 중앙 정렬 */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 🖼️ 화면 전체 뷰포트 (이 요소가 배경 이미지를 표시하고 버튼의 기준점이 됩니다) */
+#screen-viewport {
+    /* 화면을 꽉 채우기 위해 뷰포트 크기로 설정 */
+    position: fixed; 
+    top: 0; 
+    left: 0;
+    width: 100vw; 
+    height: 100vh; 
+    
+    /* ❌ background-color: #000; (이미지가 덮으므로 제거) */
+    overflow: hidden; 
+    
+    /* 🚨 이미지 배경 설정 (HTML 인라인 스타일로 정의됨) */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    /* 버튼의 기준점이 되도록 설정 */
+    position: relative; 
+}
+
+/* ➡️ 페이지 이동 버튼 스타일 */
+.nav-button {
+    position: absolute;
+    
+    /* 📐📐📐 버튼 위치 및 크기 조정 영역 📐📐📐 */
+    /* (전체 화면을 기준으로 위치 조정) */
+    right: 33.5vw;    /* 오른쪽에서부터의 거리 */
+    bottom: 3.2vh;   /* 아래쪽에서부터의 거리 */
+    width: 32.5vw; /* 버튼의 너비 */
+    height: 35.5vh; /* 버튼의 높이 */
+    
+    /* 🚨🚨🚨 디버깅 코드: 위치 조정 완료 후 제거/주석 처리 필수! 🚨🚨🚨 */
+    /*background-color: rgba(255, 165, 0, 0.7);  주황색 투명 배경 */
+    /* border: 3px solid white; 흰색 테두리 */
+    
+    color: transparent; /* 👈 이 속성을 추가/수정합니다. */
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 2vh;
+    cursor: pointer;
+    z-index: 101; 
+    transition: background-color 0.2s, transform 0.1s;
+}
+
